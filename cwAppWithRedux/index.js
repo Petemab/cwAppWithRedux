@@ -1,7 +1,17 @@
 /** @format */
 
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
+import {Navigation} from 'react-native-navigation';
+import {registerScreens} from './src/screens';
 
-AppRegistry.registerComponent(appName, () => App);
+// This runs function that registers all the screens I've created in my SRC file
+registerScreens();
+
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: 'Initializing'
+      }
+    }
+  });
+});
