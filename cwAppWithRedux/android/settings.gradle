@@ -1,0 +1,3 @@
+rootProject.name = 'cwAppWithRedux'
+
+include ':app'
