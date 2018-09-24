@@ -6,7 +6,7 @@ function url() {
 }
 
 export function receiveNames(json) {
-  return{type: types.RECEIVE_NAME, peopleData: json.peopleData};
+  return{type: types.RECEIVE_NAMES, peopleData: json.peopleData};
 }
 
 export function fetchNames(){

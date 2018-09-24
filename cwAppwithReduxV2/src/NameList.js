@@ -2,20 +2,19 @@
 
 // will make axios request to backend and fetch list of names
 import React, { Component } from 'react';
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import {Navigation} from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as stuffActions from './actions/stuffActions';
+import * as peopleActions from './actions/peopleActions';
 import PropTypes from 'prop-types';
-
 
 
 class NameList extends Component {
 
 // Initially I have set state using hard coded dummy data here
-  state = { people: [
-  ]};
+  // state = { people: [
+  // ]};
   //the top bar
   static get options() {
     return {
@@ -30,16 +29,16 @@ class NameList extends Component {
   // add axios request here to fetch the data from api when back end ready
   //tried calling my '/api/people' but it's not working
   componentDidMount(){
-    return fetch('https://cwbackend.herokuapp.com/api/people/')
-      .then((res) => res.json())
-      .then((resJson) => {
-        this.setState({
-          people: resJson
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // return fetch('https://cwbackend.herokuapp.com/api/people/')
+    //   .then((res) => res.json())
+    //   .then((resJson) => {
+    //     this.setState({
+    //       people: resJson
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   }
 
 
@@ -50,28 +49,38 @@ class NameList extends Component {
   // function to move to the detail screen
 
   renderList() {
-    console.log('render', this.state);
-    return this.state.people.map(person =>
-      <View style={styles.viewStyle} key={ person.docID  }>
-        <TouchableOpacity style={styles.listItemStyle}
-          onPress={() => {
-            Navigation.push(this.props.componentId, {
-              component: {
-                name: 'NameShow',
-                passProps: { person }
-              }
-            });
-          }}>
-          <Text style={styles.textStyle}>{ person.name}</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    console.log('render props', this.props);
+    console.log('render State', this.state);
+    // return this.state.people.map(person =>
+    //   <View style={styles.viewStyle} key={ person.docID  }>
+    //     <TouchableOpacity style={styles.listItemStyle}
+    //       onPress={() => {
+    //         Navigation.push(this.props.componentId, {
+    //           component: {
+    //             name: 'NameShow',
+    //             passProps: { person }
+    //           }
+    //         });
+    //       }}>
+    //       <Text style={styles.textStyle}>{ person.name}</Text>
+    //     </TouchableOpacity>
+    //   </View>
+    // );
   }
 
 
 
+
+
   render(){
-    console.log(this.state);
+    if(!this.state){
+      return(
+        <View style={styles.viewStyle}>
+          <ActivityIndicator />
+        </View>
+      );
+    }
+
     return(
       <ScrollView >
         {this.renderList()}
@@ -79,8 +88,24 @@ class NameList extends Component {
     );
   }
 
+}
 
+NameList.propTypes = {
+  peopleActions: PropTypes.object,
+  peopleData: PropTypes.array
+};
 
+function mapStateToProps(state) {
+  console.log('mapStateToProps', state);
+  return {
+    peopleData: state.peopleData
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    peopleActions: bindActionCreators(peopleActions, dispatch)
+  };
 }
 
 const styles = {
@@ -113,4 +138,9 @@ const styles = {
 };
 
 
-export default NameList;
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NameList);
