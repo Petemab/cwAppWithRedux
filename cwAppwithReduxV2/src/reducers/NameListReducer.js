@@ -5,7 +5,6 @@ export default function nameList(state = initialState.peopleData, action) {
   let newState;
   switch (action.type) {
     case FETCH_NAMES:
-      console.log('FETCH_STUFF Action');
       return action;
     case RECEIVE_NAMES:
       newState = action.peopleData;
