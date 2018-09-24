@@ -6,16 +6,25 @@ function url() {
 }
 
 export function receiveNames(json) {
-  return{type: types.RECEIVE_NAMES, peopleData: json.peopleData};
+  // console.log('in people actions ---->', json);
+  return {type: types.RECEIVE_NAMES, peopleData: json};
 }
 
 export function fetchNames(){
   return dispatch => {
     return fetch(url(), {
-      method: 'GET',
-      mode: 'cors'
+      method: 'GET'
     })
       .then(response => response.json())
-      .then(json => dispatch(receiveNames(json)));
+      .then(json => dispatch(receiveNames(json)))
+      .catch((error) => {
+        console.error(error);
+      });
   };
 }
+
+// export function fetchAllPersonData(){
+//   return dispatch => {
+//
+//   }
+// }

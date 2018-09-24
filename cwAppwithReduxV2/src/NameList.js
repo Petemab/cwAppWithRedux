@@ -12,10 +12,6 @@ import PropTypes from 'prop-types';
 
 class NameList extends Component {
 
-// Initially I have set state using hard coded dummy data here
-  // state = { people: [
-  // ]};
-  //the top bar
   static get options() {
     return {
       topBar: {
@@ -26,46 +22,33 @@ class NameList extends Component {
     };
   }
 
-  // add axios request here to fetch the data from api when back end ready
-  //tried calling my '/api/people' but it's not working
+  // Calls the action passed through on props tomake api call
   componentDidMount(){
-    // return fetch('https://cwbackend.herokuapp.com/api/people/')
-    //   .then((res) => res.json())
-    //   .then((resJson) => {
-    //     this.setState({
-    //       people: resJson
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    this.props.peopleActions.fetchNames();
+
   }
-
-
-
-
 
   //I put each of the names in a buttom which triggered the Navigation.push
   // function to move to the detail screen
 
   renderList() {
-    console.log('render props', this.props);
-    console.log('render State', this.state);
-    // return this.state.people.map(person =>
-    //   <View style={styles.viewStyle} key={ person.docID  }>
-    //     <TouchableOpacity style={styles.listItemStyle}
-    //       onPress={() => {
-    //         Navigation.push(this.props.componentId, {
-    //           component: {
-    //             name: 'NameShow',
-    //             passProps: { person }
-    //           }
-    //         });
-    //       }}>
-    //       <Text style={styles.textStyle}>{ person.name}</Text>
-    //     </TouchableOpacity>
-    //   </View>
-    // );
+    // console.log('render props', this.props.peopleData);
+    // console.log('in render list ---->', this.props);
+    return this.props.peopleData.map(person =>
+      <View style={styles.viewStyle} key={ person.docID  }>
+        <TouchableOpacity style={styles.listItemStyle}
+          onPress={() => {
+            Navigation.push(this.props.componentId, {
+              component: {
+                name: 'NameShow',
+                passProps: { person }
+              }
+            });
+          }}>
+          <Text style={styles.textStyle}>{ person.name}</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
 
@@ -73,7 +56,8 @@ class NameList extends Component {
 
 
   render(){
-    if(!this.state){
+    // console.log('in render --------->', this.props);
+    if(!this.props.peopleData){
       return(
         <View style={styles.viewStyle}>
           <ActivityIndicator />
@@ -96,9 +80,9 @@ NameList.propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps', state);
+  // console.log('in mapStateToProps', state);
   return {
-    peopleData: state.peopleData
+    peopleData: state.NameList
   };
 }
 

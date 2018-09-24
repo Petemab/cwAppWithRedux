@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {Navigation} from 'react-native-navigation';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
+// import { Provider } from 'react-redux';
+// import configureStore from './store/configureStore';
+
 // import reducers from './reducers';
 
 
@@ -30,27 +31,27 @@ class Home extends Component{
 
 
   render(){
-    const store = configureStore();
+    // const store = configureStore();
 
     return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <Text>A Full Stack Project for CW by Pete Bennett</Text>
-          <Text>Using React Native, Node.js, Express and Firebase</Text>
-          <TouchableOpacity style={styles.buttonStyle}
-            onPress={() => {
-              Navigation.push(this.props.componentId, {
-                component: {
-                  name: 'NameList'
-                }
-              });
-            }}
-          >
-            <Text style={styles.buttonTextStyle}>Tap Here To start</Text>
-          </TouchableOpacity>
+      // <Provider store={store}>
+      <View style={styles.container}>
+        <Text>A Full Stack Project for CW by Pete Bennett</Text>
+        <Text>Using React Native, Node.js, Express and Firebase</Text>
+        <TouchableOpacity style={styles.buttonStyle}
+          onPress={() => {
+            Navigation.push(this.props.componentId, {
+              component: {
+                name: 'NameList'
+              }
+            });
+          }}
+        >
+          <Text style={styles.buttonTextStyle}>Tap Here To start</Text>
+        </TouchableOpacity>
 
-        </View>
-      </Provider>
+      </View>
+      // </Provider>
     );
   }
 }
