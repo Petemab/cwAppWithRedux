@@ -30,7 +30,7 @@ class NameList extends Component {
 
   //I put each of the names in a buttom which triggered the Navigation.push
   // function to move to the detail screen
-
+  //
   renderList() {
     // console.log('render props', this.props.peopleData);
     // console.log('in render list ---->', this.props);
@@ -56,7 +56,7 @@ class NameList extends Component {
 
 
   render(){
-    console.log('in render --------->', this.props);
+    console.log('in render --------->', this.props.peopleData);
     if(!this.props.peopleData){
       return(
         <View style={styles.viewStyle}>
@@ -79,10 +79,11 @@ NameList.propTypes = {
   peopleData: PropTypes.array
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({ NameList }) {
   // console.log('in mapStateToProps', state);
+  const { peopleData, loading } = NameList;
   return {
-    peopleData: state.NameList
+    peopleData, loading
   };
 }
 

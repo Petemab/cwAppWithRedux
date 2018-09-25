@@ -1,4 +1,5 @@
 export default {
   peopleData: [],
-  personData: {}
+  personData: {},
+  loading: false
 };

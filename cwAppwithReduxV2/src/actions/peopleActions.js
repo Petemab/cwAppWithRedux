@@ -14,8 +14,12 @@ export function receiveNames(json) {
   return {type: types.RECEIVE_NAMES, payload: json};
 }
 
+
+
 export function fetchNames(){
   return dispatch => {
+    dispatch({ type: types.GETTING_DATA });
+
     return fetch(url(), {
       method: 'GET'
     })
@@ -46,3 +50,7 @@ export function fetchAllPersonData(id){
 
   };
 }
+
+// export function changeLoadedTrue(){
+//   return { type: types.LOADED_TRUE}
+// }

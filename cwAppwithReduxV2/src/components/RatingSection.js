@@ -1,4 +1,5 @@
 
+/// Unsure how to get this to work with redux
 
 import React, {Component} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
