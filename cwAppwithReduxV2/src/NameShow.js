@@ -113,8 +113,7 @@ class NameShow extends Component {
 
 NameShow.propTypes = {
   peopleActions: PropTypes.object,
-  personData: PropTypes.object,
-  age: PropTypes.string
+  personData: PropTypes.object
 };
 
 function mapStateToProps({NameShow}) {
