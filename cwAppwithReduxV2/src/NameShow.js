@@ -36,9 +36,9 @@ class NameShow extends Component {
   }
 
   renderShow() {
-    console.log('props----->', this.props.personData.personData);
+    console.log('props----->', this.props.personData);
     // console.log('state ----->', this.state);
-    const { image, name, rating, dob } = this.props.personData.personData;
+    const { image, name, rating, dob } = this.props.personData;
     const {
       containerStyle,
       imageStyle,
@@ -87,9 +87,9 @@ class NameShow extends Component {
 
 
   render(){
-    console.log('render props on show page', this.props.personData.personData);
+    console.log('render props on show page', this.props);
     // console.log('render state on show page', this.state);
-    if(!this.props.personData.personData){
+    if(!this.props.personData){
       return(
 
         <View>
@@ -112,13 +112,15 @@ class NameShow extends Component {
 
 NameShow.propTypes = {
   peopleActions: PropTypes.object,
-  personData: PropTypes.object
+  personData: PropTypes.object,
+  age: PropTypes.string
 };
 
-function mapStateToProps(state) {
+function mapStateToProps({NameShow}) {
   // console.log('in mapStateToProps', state);
+  const { personData, age } = NameShow;
   return {
-    personData: state.NameShow
+    personData, age
   };
 }
 

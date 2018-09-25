@@ -50,7 +50,3 @@ export function fetchAllPersonData(id){
 
   };
 }
-
-// export function changeLoadedTrue(){
-//   return { type: types.LOADED_TRUE}
-// }
