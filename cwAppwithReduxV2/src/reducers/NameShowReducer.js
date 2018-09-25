@@ -7,7 +7,7 @@ export default function nameShow(state = initialState.personData, action) {
     case FETCH_ALL_DATA:
       return action;
     case RECEIVE_ALL_DATA:
-      newState = action.personData;
+      newState = action.payload;
       // console.log(newState);
       return newState;
     default:

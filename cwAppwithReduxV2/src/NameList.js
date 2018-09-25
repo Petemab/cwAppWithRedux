@@ -56,7 +56,7 @@ class NameList extends Component {
 
 
   render(){
-    // console.log('in render --------->', this.props);
+    console.log('in render --------->', this.props);
     if(!this.props.peopleData){
       return(
         <View style={styles.viewStyle}>

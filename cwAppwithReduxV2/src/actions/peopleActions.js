@@ -11,7 +11,7 @@ function detailUrl(id){
 
 export function receiveNames(json) {
   // console.log('in people actions ---->', json);
-  return {type: types.RECEIVE_NAMES, peopleData: json};
+  return {type: types.RECEIVE_NAMES, payload: json};
 }
 
 export function fetchNames(){
@@ -30,7 +30,7 @@ export function fetchNames(){
 
 export function receiveAllPersonData(json) {
   // console.log('in receiveAllPersonData ---->', json);
-  return {type: types.RECEIVE_ALL_DATA, personData: json};
+  return {type: types.RECEIVE_ALL_DATA, payload: json};
 }
 
 export function fetchAllPersonData(id){

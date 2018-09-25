@@ -7,7 +7,7 @@ export default function nameList(state = initialState.peopleData, action) {
     case FETCH_NAMES:
       return action;
     case RECEIVE_NAMES:
-      newState = action.peopleData;
+      newState = action.payload;
       // console.log(newState);
       return newState;
     default:
