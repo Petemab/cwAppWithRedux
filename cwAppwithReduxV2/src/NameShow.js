@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import CardSection from './components/CardSection';
 import Card from './components/Card';
 import RatingSection from './components/RatingSection';
+import { findAge, untilNextBirthday } from './helpers';
 
 
 
@@ -67,8 +68,8 @@ class NameShow extends Component {
         </CardSection>
         <CardSection>
           <View style={containerStyle}>
-            <Text style={ageStyle}>{dob} years old</Text>
-            <Text style={birthdayStyle}> {'6 months and 6 days until next birthday'}</Text>
+            <Text style={ageStyle}>{findAge(dob)} years old</Text>
+            <Text style={birthdayStyle}> {untilNextBirthday(dob, name)}</Text>
           </View>
         </CardSection>
         <CardSection>
@@ -118,9 +119,9 @@ NameShow.propTypes = {
 
 function mapStateToProps({NameShow}) {
   // console.log('in mapStateToProps', state);
-  const { personData, age } = NameShow;
+  const { personData } = NameShow;
   return {
-    personData, age
+    personData
   };
 }
 
