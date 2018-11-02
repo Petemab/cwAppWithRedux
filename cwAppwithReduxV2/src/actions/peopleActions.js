@@ -50,3 +50,8 @@ export function fetchAllPersonData(id){
 
   };
 }
+
+export function incrementRating(num, rating){
+  return {type: types.INCREMENT_RATING, rating: rating + num };
+
+}

@@ -75,7 +75,8 @@ class NameShow extends Component {
         <CardSection>
           <View style={containerStyle}>
             <RatingSection
-              rating={rating}
+              // rating={rating}
+              props={this.props}
             />
           </View>
         </CardSection>

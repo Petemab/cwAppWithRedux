@@ -3,18 +3,22 @@
 
 import React, {Component} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as peopleActions from '../actions/peopleActions';
 
 class RatingSection extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { rating: this.props.rating, editMode: false };
+    this.state = { rating: this.props.personData.rating, editMode: false};
   }
 
 
 
   toggleEditMode = () => {
     this.setState({ editMode: true});
+    console.log(this.props.props.peopleActions.incrementRating);
     // console.log(this.state.rating);
   }
 
@@ -85,7 +89,7 @@ class RatingSection extends Component {
             </TouchableOpacity>
             <Text style={ratingTextStyle}>{this.state.rating}</Text>
             <TouchableOpacity
-              onPress={() => this.incrementRating(1)}>
+              onPress={() => this.props.props.peopleActions.incrementRating(1, this.state.rating)}>
               <Text style={editButtons}>    + </Text>
             </TouchableOpacity>
           </View>
@@ -112,6 +116,20 @@ class RatingSection extends Component {
     }
 
   }
+}
+
+function mapStateToProps({NameShow}) {
+  console.log('in mapStateToProps on RatingSection', NameShow);
+  const { personData  } = NameShow;
+  return {
+    personData
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    peopleActions: bindActionCreators(peopleActions, dispatch)
+  };
 }
 
 
@@ -172,4 +190,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RatingSection;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RatingSection);

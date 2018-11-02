@@ -1,5 +1,5 @@
 import initialState from './initialState';
-import {FETCH_ALL_DATA, RECEIVE_ALL_DATA} from '../actions/actionTypes';
+import {FETCH_ALL_DATA, RECEIVE_ALL_DATA, INCREMENT_RATING} from '../actions/actionTypes';
 
 export default function nameShow(state = initialState.personData, action) {
   let newState;
@@ -10,6 +10,8 @@ export default function nameShow(state = initialState.personData, action) {
       newState = action.payload;
       // console.log(newState);
       return newState;
+    case INCREMENT_RATING:
+      return action;
     default:
       return state;
   }
